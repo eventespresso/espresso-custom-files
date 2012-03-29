@@ -26,7 +26,7 @@ function display_event_espresso_date_range($date_1="null", $date_2="null"){
 					//echo $sql;
 					?>
 
-                <form id="form1" name="form1" method="post" action="<?php echo get_option('siteurl')?>/?page_id=<?php echo $event_page_id?>&regevent_action=register">
+                <form id="form1" name="form1" method="post" action="<?php echo get_option('siteurl')?>/?page_id=<?php echo $event_page_id?>&e_reg=register">
                   <table width="100%" border="0">
                     <thead align="left">
                     <th>Date</th>

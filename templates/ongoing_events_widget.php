@@ -71,7 +71,7 @@ if (!class_exists('Event_Espresso_Widget')) {
 								//Display a message if the user is not logged in.
 								//_e('Member Only Event. Please ','event_espresso') . event_espresso_user_login_link() . '.';
 							}else if ( $event->start_date >= date ( 'Y-m-d' ) && $event->registration_start <= date ('Y-m-d') && $event->registration_end >= date ('Y-m-d') || $event->event_status == 'O'  && $event->registration_start <= date ('Y-m-d') ){?> 	
-							<li><a href="<?php echo get_option('siteurl')?>/?page_id=<?php echo $event_page_id?>&regevent_action=register&event_id=<?php echo $event_id?>&name_of_event=<?php echo stripslashes($event_name)?>"><?php echo stripslashes($event_name)?> - <?php echo event_date_display($start_date)?></a></li>
+							<li><a href="<?php echo get_option('siteurl')?>/?page_id=<?php echo $event_page_id?>&e_reg=register&event_id=<?php echo $event_id?>&name_of_event=<?php echo stripslashes($event_name)?>"><?php echo stripslashes($event_name)?> - <?php echo event_date_display($start_date)?></a></li>
 	<?php 					}
 						}
 	?>

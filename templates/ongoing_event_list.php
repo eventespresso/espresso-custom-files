@@ -99,14 +99,14 @@ if (!function_exists('event_espresso_get_event_details')) {
 			$member_only = $event->member_only;
 			$externalURL = $event->externalURL;
 			
-			$registration_url = $externalURL != '' ? $externalURL : get_option('siteurl') . '/?page_id='.$event_page_id.'&regevent_action=register&event_id='. $event_id . '&name_of_event=' . stripslashes_deep($event_name);
+			$registration_url = $externalURL != '' ? $externalURL : get_option('siteurl') . '/?page_id='.$event_page_id.'&e_reg=register&event_id='. $event_id . '&name_of_event=' . stripslashes_deep($event_name);
 		
 			if (!is_user_logged_in() && get_option('events_members_active') == 'true' && $member_only == 'Y') {
 				//Display a message if the user is not logged in.
 				 //_e('Member Only Event. Please ','event_espresso') . event_espresso_user_login_link() . '.';
 			}else if ( $start_date >= date ( 'Y-m-d' ) && $registration_start <= date ('Y-m-d') && $registration_end >= date ('Y-m-d') || $event->event_status == 'O'  && $registration_start <= date ('Y-m-d') ){?>  
 				<div id="div_event_data-<?php echo $event_id?>" class="event_data">
-				<h3 id="h3_event_title-<?php echo $event_id?>" class="event_title"><a id="a_event_title-<?php echo $event_id?>" class="a_event_title" href="<?php echo get_option('siteurl')?>/?page_id=<?php echo $event_page_id?>&regevent_action=register&event_id=<?php echo $event_id?>&name_of_event=<?php echo stripslashes_deep($event_name)?>"><?php echo stripslashes_deep($event_name)?> </a></h3>
+				<h3 id="h3_event_title-<?php echo $event_id?>" class="event_title"><a id="a_event_title-<?php echo $event_id?>" class="a_event_title" href="<?php echo get_option('siteurl')?>/?page_id=<?php echo $event_page_id?>&e_reg=register&event_id=<?php echo $event_id?>&name_of_event=<?php echo stripslashes_deep($event_name)?>"><?php echo stripslashes_deep($event_name)?> </a></h3>
 				<p id="p_event_price-<?php echo $event_id?>" class="event_price">
 				<?php echo __('Price: ','event_espresso') . event_espresso_get_price($event_id);?>
 				</p>
@@ -117,7 +117,7 @@ if (!function_exists('event_espresso_get_event_details')) {
 				<p id="p_available_spaces-<?php echo $event_id?>" class="available_spaces"><?php _e('Available Spaces:','event_espresso')?> <?php echo get_number_of_attendees_reg_limit($event_id, 'available_spaces')?></p>
 							   
 					<p id="p_register_link-<?php echo $event_id?>" class="register_link">
-					<a id="a_register_link-<?php echo $event_id?>" class="a_register_link" href="<?php echo get_option('siteurl')?>/?page_id=<?php echo $event_page_id?>&regevent_action=register&event_id=<?php echo $event_id?>&name_of_event=<?php echo stripslashes_deep($event_name)?>"><?php _e('Register Online','event_espresso'); ?></a>
+					<a id="a_register_link-<?php echo $event_id?>" class="a_register_link" href="<?php echo get_option('siteurl')?>/?page_id=<?php echo $event_page_id?>&e_reg=register&event_id=<?php echo $event_id?>&name_of_event=<?php echo stripslashes_deep($event_name)?>"><?php _e('Register Online','event_espresso'); ?></a>
 					</p>
 				</div>
 	<?php

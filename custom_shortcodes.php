@@ -1,6 +1,28 @@
 <?php
 /*This is a custom shortcodes file. Please visit the Wordpress Shortcode API [http://codex.wordpress.org/Shortcode_API] for the latest information for making custom shortcodes. */
 
+
+function display_event_list_sc( $attributes ) {
+
+	global $wpdb, $org_options, $load_espresso_scripts;
+	// error logging
+	if (!empty($org_options['full_logging']) && $org_options['full_logging'] == 'Y') {
+		espresso_log::singleton()->log(array('file' => __FILE__, 'function' => __FUNCTION__, 'status' => ''));
+	}
+	//This tells the plugin to load the required scripts
+	$load_espresso_scripts = TRUE; 
+	// start output buffering
+	ob_start();			
+	//template located in event_list_dsiplay.php
+	event_espresso_get_event_details( $attributes );
+	// capture output
+	$output = ob_get_contents();
+	// empty buffer
+	ob_end_clean();
+	// give er'
+	return $output;
+}
+
 /*
 Shortcode Name: Date Range Display
 Author: Seth Shoultes

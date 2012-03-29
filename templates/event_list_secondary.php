@@ -78,14 +78,14 @@ if (!function_exists('event_espresso_get_event_details')) {
 			$allow_overflow = $event->allow_overflow;
 			$overflow_event_id = $event->overflow_event_id;
 			
-			$registration_url = $externalURL != '' ? $externalURL : get_option('siteurl') . '/?page_id='.$event_page_id.'&regevent_action=register&event_id='. $event_id . '&name_of_event=' . stripslashes_deep($event_name);
+			$registration_url = $externalURL != '' ? $externalURL : get_option('siteurl') . '/?page_id='.$event_page_id.'&e_reg=register&event_id='. $event_id . '&name_of_event=' . stripslashes_deep($event_name);
 		
 			if (!is_user_logged_in() && get_option('events_members_active') == 'true' && $member_only == 'Y') {
 				//Display a message if the user is not logged in.
 				 //_e('Member Only Event. Please ','event_espresso') . event_espresso_user_login_link() . '.';
 			}else{?>  
 				<div id="event_data-<?php echo $event_id?>" class="event_data">
-				<h3 id="event_title-<?php echo $event_id?>" class="event_title"><a title="<?php echo stripslashes_deep($event_name)?>" class="a_event_title" id="a_event_title-<?php echo $event_id?>" href="<?php echo get_option('siteurl')?>/?page_id=<?php echo $event_page_id?>&regevent_action=register&event_id=<?php echo $event_id?>&name_of_event=<?php echo stripslashes_deep($event_name)?>"><?php echo stripslashes_deep($event_name)?></a></h3>
+				<h3 id="event_title-<?php echo $event_id?>" class="event_title"><a title="<?php echo stripslashes_deep($event_name)?>" class="a_event_title" id="a_event_title-<?php echo $event_id?>" href="<?php echo get_option('siteurl')?>/?page_id=<?php echo $event_page_id?>&e_reg=register&event_id=<?php echo $event_id?>&name_of_event=<?php echo stripslashes_deep($event_name)?>"><?php echo stripslashes_deep($event_name)?></a></h3>
 				<p id="p_event_price-<?php echo $event_id?>">
 				<?php echo __('Price: ','event_espresso') . event_espresso_get_price($event_id);?>
 				</p>
@@ -111,14 +111,14 @@ Available parameters for the get_number_of_attendees_reg_limit() function
 	if ($num_attendees >= $reg_limit  ){?>
 				<p id="available_spaces-<?php echo $event_id?>"><?php _e('Available Spaces:','event_espresso')?> <?php echo get_number_of_attendees_reg_limit($event_id, 'available_spaces')?></p>
 							   
-				<p id="register_link-<?php echo $overflow_event_id?>"><a class="a_register_link" id="a_register_link-<?php echo $overflow_event_id?>" href="<?php echo get_option('siteurl')?>/?page_id=<?php echo $event_page_id?>&regevent_action=register&event_id=<?php echo $overflow_event_id?>&name_of_event=<?php echo stripslashes_deep($event_name)?>" title="<?php echo stripslashes_deep($event_name)?>"><?php _e('Join Waiting List','event_espresso'); ?></a></p> 
+				<p id="register_link-<?php echo $overflow_event_id?>"><a class="a_register_link" id="a_register_link-<?php echo $overflow_event_id?>" href="<?php echo get_option('siteurl')?>/?page_id=<?php echo $event_page_id?>&e_reg=register&event_id=<?php echo $overflow_event_id?>&name_of_event=<?php echo stripslashes_deep($event_name)?>" title="<?php echo stripslashes_deep($event_name)?>"><?php _e('Join Waiting List','event_espresso'); ?></a></p> 
 				</div>
 <?php
 	}else{
 ?>
 		<p id="available_spaces-<?php echo $event_id?>"><?php _e('Available Spaces:','event_espresso')?> <?php echo get_number_of_attendees_reg_limit($event_id, 'available_spaces')?></p>
 							   
-				<p id="register_link-<?php echo $event_id?>"><a class="a_register_link" id="a_register_link-<?php echo $event_id?>" href="<?php echo get_option('siteurl')?>/?page_id=<?php echo $event_page_id?>&regevent_action=register&event_id=<?php echo $event_id?>&name_of_event=<?php echo stripslashes_deep($event_name)?>" title="<?php echo stripslashes_deep($event_name)?>"><?php _e('Register Online','event_espresso'); ?></a></p> 
+				<p id="register_link-<?php echo $event_id?>"><a class="a_register_link" id="a_register_link-<?php echo $event_id?>" href="<?php echo get_option('siteurl')?>/?page_id=<?php echo $event_page_id?>&e_reg=register&event_id=<?php echo $event_id?>&name_of_event=<?php echo stripslashes_deep($event_name)?>" title="<?php echo stripslashes_deep($event_name)?>"><?php _e('Register Online','event_espresso'); ?></a></p> 
 				<p><?php echo espresso_show_social_media($event_id, 'twitter');?> <?php echo espresso_show_social_media($event_id, 'facebook');?></p>
 				</div>
 <?php

@@ -91,7 +91,7 @@ function espresso_get_table($sql){
     
     $event_desc = wpautop($event->event_desc);
     
-    $register_button = '<a id="a_register_link-'.$event->id.'" href="'.get_option('siteurl').'/?page_id='.$event_page_id.'&regevent_action=register&event_id='.$event->id.'&name_of_event='.stripslashes_deep($event->event_name).'">Register</a>';
+    $register_button = '<a id="a_register_link-'.$event->id.'" href="'.get_option('siteurl').'/?page_id='.$event_page_id.'&e_reg=register&event_id='.$event->id.'&name_of_event='.stripslashes_deep($event->event_name).'">Register</a>';
     
 	//Check to see how many open spots are available
     $open_spots = get_number_of_attendees_reg_limit($event->id, 'available_spaces') == 'Unlimited' ? 999 : get_number_of_attendees_reg_limit($event->id, 'available_spaces');

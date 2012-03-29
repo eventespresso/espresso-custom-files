@@ -16,7 +16,7 @@ function display_event_espresso_table(){
 	$event_page_id =$org_options['event_page_id'];
 	$curdate = date("Y-m-d");
 ?>
-<form id="event_espresso_table" name="event_espresso_table" method="post" action="<?php echo get_option('siteurl')?>/?page_id=<?php echo $event_page_id?>&regevent_action=register">
+<form id="event_espresso_table" name="event_espresso_table" method="post" action="<?php echo get_option('siteurl')?>/?page_id=<?php echo $event_page_id?>&e_reg=register">
   <table width="100%" border="0">
     <thead align="left">
 		<th><?php _e('Location','event_espresso'); ?></th>

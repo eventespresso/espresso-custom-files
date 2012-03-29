@@ -104,7 +104,7 @@ Viewing all member only reservation times for the next 10 days.
     
     $event_desc = strip_tags(html_entity_decode($event_desc));
     
-    $live_button = '<a id="a_register_link-'.$event_id.'" href="'.get_option('siteurl').'/?page_id='.$event_page_id.'&regevent_action=register&event_id='.$event_id.'&name_of_event='.stripslashes($event_name).'">Reserve Spot</a>';
+    $live_button = '<a id="a_register_link-'.$event_id.'" href="'.get_option('siteurl').'/?page_id='.$event_page_id.'&e_reg=register&event_id='.$event_id.'&name_of_event='.stripslashes($event_name).'">Reserve Spot</a>';
     
     $open_spots = get_number_of_attendees_reg_limit($event_id, 'available_spaces');
     
