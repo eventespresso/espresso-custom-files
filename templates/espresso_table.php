@@ -61,9 +61,9 @@ function espresso_get_table($sql){
   $currency_symbol = $org_options['currency_symbol'];
   $events = $wpdb->get_results($sql);
   
-  $category_name = $wpdb->last_result[0]->category_name;
-  $category_desc = $wpdb->last_result[0]->category_desc;
-  $display_desc = $wpdb->last_result[0]->display_desc;
+  $category_name = !empty($wpdb->last_result[0]->category_name) ?  $wpdb->last_result[0]->category_name : '';
+  $category_desc = !empty($wpdb->last_result[0]->category_desc) ?  $wpdb->last_result[0]->category_desc : '';
+  $display_desc = !empty($wpdb->last_result[0]->display_desc) ? $wpdb->last_result[0]->display_desc : '';
   if ($display_desc == 'Y'){
     echo '<p>' . stripslashes_deep($category_name) . '</p>';
     echo '<p>' . stripslashes_deep($category_desc) . '</p>';        
