@@ -13,7 +13,8 @@ function espresso_display_table($atts){
  	global $wpdb;
 	$org_options = get_option('events_organization_settings');
 	$event_page_id =$org_options['event_page_id'];
-
+	$type = '';
+	
 	global $load_espresso_scripts;	
 		$load_espresso_scripts = true;//This tells the plugin to load the required scripts
 		extract(shortcode_atts(array('event_category_id'=>'NULL','category_identifier' => 'NULL','show_expired' => 'false', 'show_secondary'=>'false','show_deleted'=>'false','show_recurrence'=>'true', 'limit' => '0', 'order_by' => 'NULL', 'max_days'=>''),$atts));		
