@@ -19,8 +19,13 @@ function espresso_display_table($atts){
 		$load_espresso_scripts = true;//This tells the plugin to load the required scripts
 		extract(shortcode_atts(array('event_category_id'=>'NULL','category_identifier' => 'NULL','show_expired' => 'false', 'show_secondary'=>'false','show_deleted'=>'false','show_recurrence'=>'true', 'limit' => '0', 'order_by' => 'NULL', 'max_days'=>''),$atts));		
 		
-		if ($category_identifier != 'NULL'){
+		if ( !empty($category_identifier) ){
 			$type = 'category';
+		}
+		
+		if ( !empty($event_category_id) ){
+			$type = 'category';
+			$category_identifier = $event_category_id;
 		}
 		
 		$show_expired = $show_expired == 'false' ? " AND e.start_date >= '".date ( 'Y-m-d' )."' " : '';
