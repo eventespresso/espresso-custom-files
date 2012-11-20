@@ -68,3 +68,23 @@ Shortcode Name: CSS Dropdown
 if (file_exists(EVENT_ESPRESSO_TEMPLATE_DIR."css-dropdown/css_dropdown.php")){
 	require_once(EVENT_ESPRESSO_TEMPLATE_DIR."css-dropdown/css_dropdown.php");
 }
+
+/*
+Shortcode Name: Recurring Dropdown
+* use the following shortcodes in a page or post:
+* [RECURRING_DROPDOWN]
+* [RECURRING_DROPDOWN limit=1]
+* [RECURRING_DROPDOWN show_expired=true]
+* [RECURRING_DROPDOWN show_deleted=true]
+* [RECURRING_DROPDOWN show_secondary=true]
+* [RECURRING_DROPDOWN show_recurrence=true]
+* [RECURRING_DROPDOWN button_text="Select a date"]
+* [RECURRING_DROPDOWN category_identifier=your_category_identifier]
+*
+* Example:
+* [RECURRING_DROPDOWN button_text="View date selection" category_identifier=your_category_identifier]
+*
+*/
+if (file_exists(EVENT_ESPRESSO_TEMPLATE_DIR."recurring-dropdown/recurring_table.php")){
+	require_once(EVENT_ESPRESSO_TEMPLATE_DIR."recurring-dropdown/recurring_table.php");
+}

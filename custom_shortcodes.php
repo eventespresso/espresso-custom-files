@@ -1,28 +1,6 @@
 <?php
 /*This is a custom shortcodes file. Please visit the Wordpress Shortcode API [http://codex.wordpress.org/Shortcode_API] for the latest information for making custom shortcodes. */
 
-
-function display_event_list_sc( $attributes ) {
-
-	global $wpdb, $org_options, $load_espresso_scripts;
-	// error logging
-	if (!empty($org_options['full_logging']) && $org_options['full_logging'] == 'Y') {
-		espresso_log::singleton()->log(array('file' => __FILE__, 'function' => __FUNCTION__, 'status' => ''));
-	}
-	//This tells the plugin to load the required scripts
-	$load_espresso_scripts = TRUE; 
-	// start output buffering
-	ob_start();			
-	//template located in event_list_dsiplay.php
-	event_espresso_get_event_details( $attributes );
-	// capture output
-	$output = ob_get_contents();
-	// empty buffer
-	ob_end_clean();
-	// give er'
-	return $output;
-}
-
 /*
 Shortcode Name: Date Range Display
 Author: Seth Shoultes
@@ -148,3 +126,24 @@ function espresso_table($atts) {
 	return $buffer;
 }
 add_shortcode('ESPRESSO_TABLE', 'espresso_table');
+
+/*
+ *
+ * Shortcode Name: Recurring Dropdown
+ *
+ */
+if (!function_exists('display_recurring_dropdown_sc')) {
+
+	function display_recurring_dropdown_sc($attributes) {
+
+		//template located in /recurring-dropdown/recurring_table_display.php
+		ob_start();
+		//echo $sql;
+        recurring_dropdown_get_event_details($attributes);
+		$buffer = ob_get_contents();
+		ob_end_clean();
+		return $buffer;
+	}
+
+}
+add_shortcode('RECURRING_DROPDOWN', 'display_recurring_dropdown_sc');
