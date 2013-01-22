@@ -51,18 +51,13 @@ function espresso_display_table($atts){
  	global $wpdb;
 	$org_options = get_option('events_organization_settings');
 	$event_page_id =$org_options['event_page_id'];
-  $type = '';
 
 	global $load_espresso_scripts;
 		$load_espresso_scripts = true;//This tells the plugin to load the required scripts
-    extract(shortcode_atts(array('event_category_id'=>'NULL','category_identifier' => 'NULL','show_expired' => 'false', 'show_secondary'=>'false','show_deleted'=>'false','show_recurrence'=>'true', 'limit' => '0', 'order_by' => 'NULL', 'max_days'=>''),$atts));
+		extract(shortcode_atts(array('event_category_id'=>'NULL','category_identifier' => 'NULL','show_expired' => 'false', 'show_secondary'=>'false','show_deleted'=>'false','show_recurrence'=>'true', 'limit' => '0', 'order_by' => 'NULL', 'max_days'=>''),$atts));
 
-    if ( !empty($category_identifier) ){
-      $type = 'category';
-    }
-    if ( !empty($event_category_id) ){
-		  $type = 'category';
-      $category_identifier = $event_category_id;
+		if ($category_identifier != 'NULL'){
+			$type = 'category';
 		}
 
 		$show_expired = $show_expired == 'false' ? " AND e.start_date >= '".date ( 'Y-m-d' )."' " : '';
@@ -118,9 +113,9 @@ function espresso_get_table($sql){
   $currency_symbol = $org_options['currency_symbol'];
   $events = $wpdb->get_results($sql);
 
-  $category_name = !empty($wpdb->last_result[0]->category_name) ?  $wpdb->last_result[0]->category_name : '';
-  $category_desc = !empty($wpdb->last_result[0]->category_desc) ?  $wpdb->last_result[0]->category_desc : '';
-  $display_desc = !empty($wpdb->last_result[0]->display_desc) ? $wpdb->last_result[0]->display_desc : '';
+  $category_name = $wpdb->last_result[0]->category_name;
+  $category_desc = $wpdb->last_result[0]->category_desc;
+  $display_desc = $wpdb->last_result[0]->display_desc;
   if ($display_desc == 'Y'){
     echo '<p>' . stripslashes_deep($category_name) . '</p>';
     echo '<p>' . stripslashes_deep($category_desc) . '</p>';
@@ -160,7 +155,7 @@ function espresso_get_table($sql){
         $cost = do_shortcode('[EVENT_PRICE event_id="'.$event->id.'" number="0"]');
         $open_spots = do_shortcode('[ATTENDEE_NUMBERS event_id="' . $event->id . '" type="available_spaces"]'); //Check to see how many open spots are available
         $staff = do_shortcode('[ESPRESSO_STAFF event_id="'.$event->id.'" show_image="false" show_staff_titles="false" show_staff_details="false" show_description="false"]');
-        $cart_link = do_shortcode('[ESPRESSO_CART_LINK event_id="'.$event->id.'" anchor="' . __( 'Add to cart', 'event_espresso' ) . '"]')
+        $cart_link = do_shortcode('[ESPRESSO_CART_LINK event_id="'.$event->id.'" anchor="' . __( 'Add to cart', 'event_espresso' ) . '"]');
         // uncomment this line if your site is not using pretty permalinks
         //$ee_base_reg_url = home_url() . '/?page_id=' . $event_page_id;
         // comment out this line if your site is not using pretty permalinks
